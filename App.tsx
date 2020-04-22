@@ -1,11 +1,27 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import {
+  ApplicationProvider,
+  Button,
+  IconRegistry,
+  Text,
+} from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import * as eva from '@eva-design/eva'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
+    <>
+    <IconRegistry icons={EvaIconsPack}/>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <View style={styles.container}>
+        <Button style={{ borderRadius: 20, width: 200}}  size="medium" appearance='outline' status="info">
+          Get Started
+        </Button>
+      </View>
+    </ApplicationProvider>
+    
+    </>
   );
 }
 
