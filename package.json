@@ -1,37 +1,26 @@
 {
-  "name": "todo",
-  "version": "0.0.1",
-  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
   "dependencies": {
-    "@eva-design/eva": "2.0.0-alpha.1",
-    "@ui-kitten/components": "5.0.0-alpha.1",
-    "@ui-kitten/eva-icons": "5.0.0-alpha.1",
-    "react": "16.11.0",
-    "react-native": "0.62.1",
-    "react-native-svg": "9.13.6"
+    "expo": "~37.0.3",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
+    "react-native-screens": "~2.2.0",
+    "react-native-web": "~0.11.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
-    "@react-native-community/eslint-config": "^1.0.0",
-    "@types/react-native": "^0.62.2",
-    "@ui-kitten/metro-config": "4.4.1",
-    "babel-jest": "^24.9.0",
-    "eslint": "^6.5.1",
-    "jest": "^24.9.0",
-    "metro-react-native-babel-preset": "^0.58.0",
-    "prettier": "^2.0.2",
-    "react-test-renderer": "16.11.0"
+    "@babel/core": "^7.8.6",
+    "@types/react": "~16.9.23",
+    "@types/react-native": "~0.61.17",
+    "babel-preset-expo": "~8.1.0",
+    "typescript": "~3.8.3"
   },
-  "jest": {
-    "preset": "react-native",
-    "transformIgnorePatterns": []
-  }
+  "private": true
 }
