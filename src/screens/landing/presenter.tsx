@@ -1,5 +1,5 @@
 import React from "react";
-import {View, StyleSheet, SafeAreaView, Text, ImageBackground} from "react-native";
+import {View, StyleSheet, SafeAreaView, Text, ImageBackground, TouchableOpacity} from "react-native";
 
 import { Button } from '@ui-kitten/components';
 import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
@@ -34,8 +34,11 @@ export const LandingPresenter: React.FunctionComponent<LandingProps> = ({navigat
                             backgroundColor: "white", borderWidth: 0}} appearance="filled">
                         {<Text style={{color: "#FC5B3E", fontWeight: "bold", fontSize: "15%" as any}}>Sign In</Text> as any}
                     </Button>
+                    <TouchableOpacity onPress={() => navigation.navigate("resetPassword")}>
 
                     <Text style={styles.forgotPassword}>Forgot Password?</Text>
+
+                    </TouchableOpacity>
                 </View>
                 
             </ImageBackground>

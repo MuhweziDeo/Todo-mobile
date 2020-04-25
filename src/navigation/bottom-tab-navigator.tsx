@@ -3,13 +3,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigation, BottomNavigationTab } from '@ui-kitten/components';
 import { RouteProp } from '@react-navigation/native';
 
-import { LandingScreen, LoginScreen, SignInScren } from "../screens";
+import { LandingScreen, LoginScreen, SignInScren, ForgotPasswordScreen } from "../screens";
 import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
 
 export type RouteParamList = {
   start: undefined,
   login: undefined,
-  signup: undefined
+  signup: undefined,
+  resetPassword: undefined
 }
 
 export type LoginNavigationProps = {
@@ -56,9 +57,17 @@ export const BottomTabNavigator = (props: any) => {
           }}
           />
 
-            <Screen
+          <Screen
             name="signup"
             component={SignInScren}
+            options={{
+              tabBarVisible: false,
+          }}
+          />
+
+          <Screen
+            name="resetPassword"
+            component={ForgotPasswordScreen}
             options={{
               tabBarVisible: false,
           }}
