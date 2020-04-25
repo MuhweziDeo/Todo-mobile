@@ -12,8 +12,12 @@ import { BottomTabNavigator } from './src/navigation/bottom-tab-navigator';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Asset} from "expo-asset";
 import {AppLoading} from "expo";
+import { Root } from "native-base";
+
 
 export const Stack = createStackNavigator();
+
+console.disableYellowBox = true;
 
 export const cacheImages = (images: string[]) => {
   return images.map((image) => {
@@ -47,12 +51,14 @@ export default function App() {
   }
   return (
     <>
+    <Root>
     <IconRegistry icons={EvaIconsPack}/>
     <ApplicationProvider {...eva} theme={eva.light}>
       <NavigationContainer ref={containerRef as any}>
         <BottomTabNavigator/>
       </NavigationContainer>
     </ApplicationProvider>
+    </Root>
     </>
   );
 }

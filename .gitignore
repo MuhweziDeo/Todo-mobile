@@ -12,3 +12,6 @@ web-report/
 yarn.lock
 # macOS
 .DS_Store
+.env
+
+src/google.json
