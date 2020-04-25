@@ -1,0 +1,1 @@
+export const defaultColor = "#FC5B3E";

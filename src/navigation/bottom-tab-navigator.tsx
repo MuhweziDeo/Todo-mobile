@@ -34,7 +34,7 @@ const BottomTabBar = ({ navigation, state }:any) => {
 
 export const BottomTabNavigator = (props: any) => {
     return (
-        <Navigator tabBar={(props: any) => <BottomTabBar {...props} />} >
+        <Navigator tabBarOptions={{keyboardHidesTabBar: true}} tabBar={(props: any) => <BottomTabBar {...props} />} >
           <Screen
             name="start"
             component={LandingScreen}
@@ -46,6 +46,9 @@ export const BottomTabNavigator = (props: any) => {
           <Screen
             name="login"
             component={LoginScreen}
+            options={{
+              tabBarVisible: false,
+          }}
           />
             
         </Navigator>

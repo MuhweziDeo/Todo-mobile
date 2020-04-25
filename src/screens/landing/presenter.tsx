@@ -1,13 +1,16 @@
 import React from "react";
 import {View, StyleSheet, SafeAreaView, Text, ImageBackground} from "react-native";
+
 import { Button } from '@ui-kitten/components';
+import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
+import { RouteParamList } from "../../navigation/bottom-tab-navigator";
 
 
 export interface LandingProps {
-
+    navigation: StackNavigationProp<RouteParamList, "start">
 }
 
-export const LandingPresenter: React.FunctionComponent<LandingProps> = (props) => {
+export const LandingPresenter: React.FunctionComponent<LandingProps> = ({navigation}) => {
 
     return (
         <View style={styles.container}>
@@ -26,9 +29,10 @@ export const LandingPresenter: React.FunctionComponent<LandingProps> = (props) =
                         Signup
                     </Button>
                     <Button 
+                    onPress={() =>navigation.navigate("login") }
                     style={{...styles.marginBottom, ...styles.actionButtons, 
                             backgroundColor: "white", borderWidth: 0}} appearance="filled">
-                        {<Text style={{color: "#FC5B3E", fontWeight: "bold", fontSize: "15%"}}>Sign In</Text> as any}
+                        {<Text style={{color: "#FC5B3E", fontWeight: "bold", fontSize: "15%" as any}}>Sign In</Text> as any}
                     </Button>
 
                     <Text style={styles.forgotPassword}>Forgot Password?</Text>
