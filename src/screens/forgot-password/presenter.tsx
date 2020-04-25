@@ -23,10 +23,10 @@ export const ForgotPasswordPresenter: React.FunctionComponent<ForgotPasswordProp
     
     return (
         <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-         style={{backgroundColor: defaultColor, height: height}}>
+            behavior={Platform.OS == "ios" ? "padding" : "height"}
+            style={{backgroundColor: defaultColor, height: height, flex:1}}>
             <SafeAreaView >
-                <Ionicons onPress={() => navigation.goBack() } style={{marginLeft: 20, paddingTop: 20}} 
+                <Ionicons onPress={() => navigation.goBack() } style={{marginLeft: 20, paddingTop: 40}} 
                 name="ios-arrow-back" color="white" size={30}/>
             </SafeAreaView>
            <View style={{flex: 0.5, backgroundColor: defaultColor, justifyContent: "center", padding: 10}}>
@@ -46,7 +46,7 @@ export const ForgotPasswordPresenter: React.FunctionComponent<ForgotPasswordProp
                     leftIcon={<Icon name="mail" color={defaultColor} style={styles.icon} size={20}/>}
                     inputContainerStyle={{borderBottomColor: defaultColor}}
                     containerStyle={{marginBottom: 40, marginTop: 40}}
-                    inputStyle={{fontSize: "15%" as any}}
+                    inputStyle={{fontSize: 15}}
                     onChangeText={(text) => onChangeEmail(text.toLocaleLowerCase())}
                     value={email}
                     errorMessage={emailError}
@@ -57,7 +57,7 @@ export const ForgotPasswordPresenter: React.FunctionComponent<ForgotPasswordProp
                         onPress={submit} disabled={(email === "") || (emailError !== "") || loading} status="control" 
                         style={{...styles.siginButton, opacity: (email === "") || (emailError !== "") || loading ? 0.5: 1}} 
                         appearance="outline">
-                    {<Text style={{fontSize: "15%" as any, color: "white"}}>Submit</Text> as any }
+                    {<Text style={{fontSize: 15, color: "white"}}>Submit</Text> as any }
                 </Button>
                 </View>
                 

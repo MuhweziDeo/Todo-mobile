@@ -27,7 +27,7 @@ export const LoginPresenter: React.FunctionComponent<LoginProps> = ({onChangeEma
     return (
         <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
-         style={{backgroundColor: defaultColor, height: height}}>
+         style={{backgroundColor: defaultColor, height: height, flex:1}}>
             <SafeAreaView >
                 <Ionicons onPress={() => navigation.goBack() } style={{marginLeft: 20, paddingTop: 40}} 
                 name="ios-arrow-back" color="white" size={30}/>
