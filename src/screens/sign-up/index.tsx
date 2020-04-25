@@ -1,22 +1,27 @@
 import React from "react";
-import { Toast } from "native-base";
-import { LoginPresenter, LoginProps } from "./presenter";
+import { SignUpPresenter } from "./presenter";
 import { validateEmail } from "../../helpers";
-import firebase from "../../firebase";
-import { Keyboard } from "react-native";
+import app from "../../firebase";
+import { Toast } from "native-base";
+import {SignUpNavigationProps} from "../../navigation/bottom-tab-navigator";
 
-export const LoginScreen: React.FunctionComponent = (props) => {
+export interface Props extends SignUpNavigationProps {
+
+}
+export const SignInScren = ({navigation}: Props) => {
     const[email, setEmail] = React.useState<string>("");
     const[password, setPassword] = React.useState<string>("");
     const[emailError, setEmailError] = React.useState("");
     const[passwordError, setPasswordError] = React.useState("");
+    const[confirmPassword, setConfirmPassword] = React.useState("");
+    const[confirmPasswordError, setConfirmPasswordError] = React.useState("");
     const[loading, setLoading] = React.useState(false);
 
     React.useEffect(() => {
         if(email  && !(validateEmail(email))){
             setEmailError("email is in valid");
         }else{
-            setEmailError("")
+            setEmailError("");
         }
 
     },[email]);
@@ -33,41 +38,58 @@ export const LoginScreen: React.FunctionComponent = (props) => {
 
     },[password]);
 
+    React.useEffect(() => {
+        if(confirmPassword && (confirmPassword.trim().length === 0)) {
+            setConfirmPasswordError("confirmPassword is required");
+
+        }else if(confirmPassword && confirmPassword !== password) {
+            setConfirmPasswordError("passwords must match");
+        }else{
+            setConfirmPasswordError("");
+        }
+
+    },[confirmPassword]);
+
     const submit = async() => {
-        Keyboard.dismiss()
+        setLoading(true);
         try {
-            setLoading(true);
-            const res: any = await firebase.auth().signInWithEmailAndPassword(email.toLocaleLowerCase(), password);
+            const res = await app.auth().createUserWithEmailAndPassword(email, password);
             setLoading(false);
-            resetForm();
             Toast.show({
-                type: "success",
-                text: "Login Successful"
+                text: "Account Created Please Login",
+                type: "success"
             });
+            resetForm();
+            navigation.navigate("login");
         } catch (error) {
             setLoading(false);
             Toast.show({
-                text: error.message,
+                text: error.message
             });
         }
     }
 
     const resetForm = () => {
-        setEmail("");
         setPassword("");
+        setEmail("");
+        setConfirmPassword("");
     }
 
+
     return (
-        <LoginPresenter
-            {...props}
+        <SignUpPresenter
+            navigation={navigation}
             onChangeEmail={setEmail}
             onChangePassword={setPassword}
             email={email}
             password={password}
             passwordError={passwordError}
             emailError={emailError}
+            confirmPassword={confirmPassword}
+            onChangeConfirmPassword={setConfirmPassword}
             submit={submit}
             loading={loading}
+            confirmPasswordError={confirmPasswordError}
         />
     )
 }

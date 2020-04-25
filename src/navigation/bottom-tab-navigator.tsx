@@ -3,11 +3,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { BottomNavigation, BottomNavigationTab } from '@ui-kitten/components';
 import { RouteProp } from '@react-navigation/native';
 
-import { LandingScreen, LoginScreen } from "../screens";
+import { LandingScreen, LoginScreen, SignInScren } from "../screens";
+import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
 
 export type RouteParamList = {
   start: undefined,
-  login: undefined
+  login: undefined,
+  signup: undefined
 }
 
 export type LoginNavigationProps = {
@@ -15,10 +17,12 @@ export type LoginNavigationProps = {
   navigation: {}
 }
 
+export type SignUpNavigationProps = {
+  route: RouteProp<RouteParamList, "signup">,
+  navigation: StackNavigationProp<RouteParamList, "signup">
+}
+
 const{Screen, Navigator} = createBottomTabNavigator<RouteParamList>();
-
-// TODO Add Navigation Props
-
 
 const BottomTabBar = ({ navigation, state }:any) => {
     return (
@@ -28,6 +32,7 @@ const BottomTabBar = ({ navigation, state }:any) => {
           onSelect={index => navigation.navigate(state.routeNames[index])}>
           <BottomNavigationTab title='start'/>
           <BottomNavigationTab title='login'/>
+          <BottomNavigationTab title='signin'/>
         </BottomNavigation>
     )
 };
@@ -46,6 +51,14 @@ export const BottomTabNavigator = (props: any) => {
           <Screen
             name="login"
             component={LoginScreen}
+            options={{
+              tabBarVisible: false,
+          }}
+          />
+
+            <Screen
+            name="signup"
+            component={SignInScren}
             options={{
               tabBarVisible: false,
           }}

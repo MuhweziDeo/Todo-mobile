@@ -24,7 +24,7 @@ export const LandingPresenter: React.FunctionComponent<LandingProps> = ({navigat
                     <Text style={{color: "white", fontWeight: "bold", fontSize: 30, paddingLeft: 40}}>Welcome</Text>
                 </SafeAreaView>
                 <View style={{flex:1, justifyContent: "flex-end", alignItems: "center", marginBottom: 100}}>
-                    <Button status="control" style={{...styles.marginBottom, ...styles.actionButtons}} 
+                    <Button onPress={() => navigation.navigate("signup")} status="control" style={{...styles.marginBottom, ...styles.actionButtons}} 
                         appearance="outline">
                         Signup
                     </Button>
