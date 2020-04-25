@@ -55,7 +55,7 @@ export const SignUpPresenter = ({onChangeEmail, navigation, password, email,
                     leftIcon={<Icon name="mail" color={defaultColor} style={styles.icon} size={20}/>}
                     inputContainerStyle={{borderBottomColor: defaultColor}}
                     containerStyle={{marginBottom: 40, marginTop: 25}}
-                    inputStyle={{fontSize: "15%" as any}}
+                    inputStyle={{fontSize: 15}}
                     onChangeText={(text) => onChangeEmail(text.toLocaleLowerCase())}
                     value={email}
                     errorMessage={emailError}
@@ -67,7 +67,7 @@ export const SignUpPresenter = ({onChangeEmail, navigation, password, email,
                     placeholder='enter password'
                     leftIcon={<Icon name="key" style={styles.icon} size={20} color={defaultColor}/>}
                     inputContainerStyle={{borderBottomColor: defaultColor}}
-                    inputStyle={{fontSize: "15%" as any}}
+                    inputStyle={{fontSize: 15}}
                     secureTextEntry={!visible}
                     onChangeText={(text) =>onChangePassword(text)}
                     errorMessage={passwordError}
@@ -83,7 +83,7 @@ export const SignUpPresenter = ({onChangeEmail, navigation, password, email,
                     placeholder='confirm password'
                     leftIcon={<Icon name="key" style={styles.icon} size={20} color={defaultColor}/>}
                     inputContainerStyle={{borderBottomColor: defaultColor}}
-                    inputStyle={{fontSize: "15%" as any}}
+                    inputStyle={{fontSize: 15}}
                     containerStyle={{marginBottom: 10, marginTop: 25}}
                     secureTextEntry={!confirmPasswordVisible}
                     onChangeText={(text) =>onChangeConfirmPassword(text)}
@@ -99,7 +99,7 @@ export const SignUpPresenter = ({onChangeEmail, navigation, password, email,
                         style={{...styles.siginButton, opacity: (email === "" || password === "" || confirmPassword == "") ||
                          (passwordError !== "" || emailError !== "" || confirmPasswordError !== "") || loading ? 0.5: 1}} 
                         appearance="outline">
-                    {<Text style={{fontSize: "15%" as any, color: "white"}}>Create Account</Text> as any }
+                    {<Text style={{fontSize: 15, color: "white"}}>Create Account</Text> as any }
                 </Button>
                 </View>
                 

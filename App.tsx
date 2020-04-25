@@ -8,7 +8,7 @@ import {
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import * as eva from '@eva-design/eva';
 import { NavigationContainer } from '@react-navigation/native';
-import { BottomTabNavigator } from './src/navigation/bottom-tab-navigator';
+import { StackNavigator } from './src/navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import {Asset} from "expo-asset";
 import {AppLoading} from "expo";
@@ -55,7 +55,7 @@ export default function App() {
     <IconRegistry icons={EvaIconsPack}/>
     <ApplicationProvider {...eva} theme={eva.light}>
       <NavigationContainer ref={containerRef as any}>
-        <BottomTabNavigator/>
+        <StackNavigator/>
       </NavigationContainer>
     </ApplicationProvider>
     </Root>

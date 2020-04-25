@@ -49,7 +49,7 @@ export const LoginPresenter: React.FunctionComponent<LoginProps> = ({onChangeEma
                     leftIcon={<Icon name="mail" color={defaultColor} style={styles.icon} size={20}/>}
                     inputContainerStyle={{borderBottomColor: defaultColor}}
                     containerStyle={{marginBottom: 40, marginTop: 40}}
-                    inputStyle={{fontSize: "15%" as any}}
+                    inputStyle={{fontSize: 15}}
                     onChangeText={(text) => onChangeEmail(text.toLocaleLowerCase())}
                     value={email}
                     errorMessage={emailError}
@@ -61,7 +61,7 @@ export const LoginPresenter: React.FunctionComponent<LoginProps> = ({onChangeEma
                     placeholder='enter password'
                     leftIcon={<Icon name="key" style={styles.icon} size={20} color={defaultColor}/>}
                     inputContainerStyle={{borderBottomColor: defaultColor}}
-                    inputStyle={{fontSize: "15%" as any}}
+                    inputStyle={{fontSize: 15}}
                     secureTextEntry={!visible}
                     onChangeText={(text) =>onChangePassword(text)}
                     errorMessage={passwordError}
@@ -75,7 +75,7 @@ export const LoginPresenter: React.FunctionComponent<LoginProps> = ({onChangeEma
                         onPress={submit} disabled={(email === "" || password === "") || (passwordError !== "" || emailError !== "") || loading} status="control" 
                         style={{...styles.siginButton, opacity: (email === "" || password === "") || (passwordError !== "" || emailError !== "") || loading ? 0.5: 1}} 
                         appearance="outline">
-                    {<Text style={{fontSize: "15%" as any, color: "white"}}>Sign In</Text> as any }
+                    {<Text style={{fontSize: 15, color: "white"}}>Sign In</Text> as any }
                 </Button>
                 </View>
                 

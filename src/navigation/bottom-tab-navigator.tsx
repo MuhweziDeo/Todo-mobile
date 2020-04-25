@@ -25,6 +25,8 @@ export type SignUpNavigationProps = {
 
 const{Screen, Navigator} = createBottomTabNavigator<RouteParamList>();
 
+
+
 const BottomTabBar = ({ navigation, state }:any) => {
     return (
         <BottomNavigation

@@ -32,7 +32,7 @@ export const LandingPresenter: React.FunctionComponent<LandingProps> = ({navigat
                     onPress={() =>navigation.navigate("login") }
                     style={{...styles.marginBottom, ...styles.actionButtons, 
                             backgroundColor: "white", borderWidth: 0}} appearance="filled">
-                        {<Text style={{color: "#FC5B3E", fontWeight: "bold", fontSize: "15%" as any}}>Sign In</Text> as any}
+                        {<Text style={{color: "#FC5B3E", fontWeight: "bold", fontSize: 15}}>Sign In</Text> as any}
                     </Button>
                     <TouchableOpacity onPress={() => navigation.navigate("resetPassword")}>
 
