@@ -1,13 +1,13 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 
-import {  HomeScreen, TasksScreen } from "../screens";
+import {  HomeScreen, TasksScreen, AddTodoScreen } from "../screens";
 import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
-import { FontAwesome, Entypo, AntDesign, MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { FontAwesome, AntDesign, Ionicons } from "@expo/vector-icons";
 import { defaultColor } from "../constants";
-import { AppContex, defaultContext } from "../context";
+import { defaultContext } from "../context";
 
 
 
@@ -17,7 +17,8 @@ export type RouteParamList = {
   signup: undefined,
   resetPassword: undefined,
   home: undefined,
-  tasks: undefined
+  tasks: undefined,
+  addTodo: undefined
 }
 
 export type LoginNavigationProps = {
@@ -33,17 +34,17 @@ export type SignUpNavigationProps = {
 const{Screen, Navigator} = createBottomTabNavigator<RouteParamList>();
 
 const BottomTabBar = ({ navigation, state }:any) => {
-    const context = React.useContext(defaultContext)
+    const context = React.useContext(defaultContext);
+    console.log(state.index);
     return (
       <View style={{...styles.tabContainer, backgroundColor: 
-        state.index === 1 ? "white": context.tabContainerColor}}>
+        state.index !== 0 ? "white": context.tabContainerColor}}>
         <View style={styles.tabNav}>
           <FontAwesome name="home" onPress={() => navigation.navigate('home')} size={25} color="white"/>
           <FontAwesome onPress={() => navigation.navigate('tasks')} name="tasks" size={25} color="white"/>
           <AntDesign name="contacts" size={25} color="white"/>
-          <FontAwesome name="folder" size={25} color="white"/>
-          <Ionicons name="md-add-circle" size={60} color={defaultColor}/>
-          {/* <MaterialIcons name="add-circle" size={60} color={defaultColor}/> */}
+          <AntDesign name="poweroff" size={25} color="white"/>
+          <Ionicons onPress={() => navigation.navigate('addTodo')} name="md-add-circle" size={60} color={defaultColor}/>
         </View>
       </View>
         
@@ -64,6 +65,11 @@ export const BottomTabNavigator = (props: any) => {
             <Screen
             name="tasks"
             component={TasksScreen}
+          />
+
+          <Screen
+            name="addTodo"
+            component={AddTodoScreen}
           />
         </Navigator>
     )
