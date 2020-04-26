@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Alert } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 
@@ -8,6 +8,7 @@ import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/
 import { FontAwesome, AntDesign, Ionicons } from "@expo/vector-icons";
 import { defaultColor } from "../constants";
 import { defaultContext } from "../context";
+import app from "../firebase";
 
 
 
@@ -35,7 +36,23 @@ const{Screen, Navigator} = createBottomTabNavigator<RouteParamList>();
 
 const BottomTabBar = ({ navigation, state }:any) => {
     const context = React.useContext(defaultContext);
-    console.log(state.index);
+    const logout = async() => {
+      Alert.alert("Logout", "Are you sure you want to logout", [
+        {
+          text: "Cancel",
+          
+        },
+        {
+          text:"Ok",
+          onPress: () => {
+            app.auth().signOut()
+            navigation.navigate("start");
+            context.user = null;
+          }
+        }
+      ]);
+
+    }
     return (
       <View style={{...styles.tabContainer, backgroundColor: 
         state.index !== 0 ? "white": context.tabContainerColor}}>
@@ -43,7 +60,7 @@ const BottomTabBar = ({ navigation, state }:any) => {
           <FontAwesome name="home" onPress={() => navigation.navigate('home')} size={25} color="white"/>
           <FontAwesome onPress={() => navigation.navigate('tasks')} name="tasks" size={25} color="white"/>
           <AntDesign name="contacts" size={25} color="white"/>
-          <AntDesign name="poweroff" size={25} color="white"/>
+          <AntDesign onPress={logout} name="poweroff" size={25} color="white"/>
           <Ionicons onPress={() => navigation.navigate('addTodo')} name="md-add-circle" size={60} color={defaultColor}/>
         </View>
       </View>

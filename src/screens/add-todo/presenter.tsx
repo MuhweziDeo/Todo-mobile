@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Text, View, SafeAreaView, Platform, KeyboardAvoidingView} from "react-native";
+import {StyleSheet, Text, View, SafeAreaView, Platform, KeyboardAvoidingView, Keyboard} from "react-native";
 import {Entypo as Icon, Ionicons, MaterialIcons} from "@expo/vector-icons";
 import { Input } from 'react-native-elements';
 import {Button} from "@ui-kitten/components";
@@ -83,6 +83,7 @@ export const AddTodoPresenter: React.FunctionComponent<ForgotPasswordProps> = ({
                     onConfirm={(date) => {
                         onChangeDate(date);
                         setVisible(false);
+                        Keyboard.dismiss();
                     }}
                     onCancel={() => setVisible(false)}
                 />

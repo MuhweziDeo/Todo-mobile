@@ -5,6 +5,11 @@ import { defaultColor, height } from "../../constants";
 import { ListItem } from 'react-native-elements'
 import {  Text } from "@ui-kitten/components";
 import {CheckBox} from "native-base";
+import { Todo } from ".";
+import moment from "moment";
+import { LoadingIndicator } from "../../components";
+
+
 const month = new Array();
 month[0] = "January";
 month[1] = "February";
@@ -19,7 +24,20 @@ month[9] = "October";
 month[10] = "November";
 month[11] = "December";
 
-export const TasksPresenter = (props: any) => {
+export interface Props {
+    todos: Todo[],
+    complete(index: number):void,
+    loading: boolean
+}
+
+export const TasksPresenter: React.FunctionComponent<Props> = ({todos, complete, loading}) => {
+    const completion = () => {
+        const completed = todos.filter((todo) => todo.completed);
+        const count = completed.reduce((x, y) => x+1,0);
+        const percentage = (count/todos.length) * 100;
+        return Math.round(percentage);
+
+    }
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
@@ -38,8 +56,6 @@ export const TasksPresenter = (props: any) => {
                             </View>
 
                         </View>
-
-
                         
                     </View>
 
@@ -48,27 +64,28 @@ export const TasksPresenter = (props: any) => {
                         borderTopLeftRadius: 40,
                         padding: 30
                         }}>
-                        <View style={{backgroundColor: "#8C8FFF", width: "100%", height: 20, marginBottom:10}}>
-                            <Text style={{backgroundColor: defaultColor, width: "50%",color: "white"}}>
-                                50%
-                            </Text>
-                        </View>
-                    <Text status="warning" style={{textAlign: "center", fontWeight: "bold", fontSize: 20}}>Tasks</Text>     
+                        <Text style={{ 
+                                color: defaultColor, 
+                                textAlign:"center", fontSize: 20}}>
+                                {completion() +  '%'}
+                        </Text>
+                    <Text status="warning" style={{textAlign: "center", fontWeight: "bold", fontSize: 20}}>Tasks</Text>
+                    {loading && <LoadingIndicator style={{alignSelf: "center"}} size="large"/>}
 
                     <FlatList
-                        data={[1,2,4,6,8,8,0]}
+                        data={todos}
                         renderItem={({item, index}) => {
+                            const{description, dueDate, completed, id} = item;
                           return  <ListItem
-                            key={index}
-                            title={"Go to school"}
-                            // subtitle={"ddd"}
+                            key={id}
+                            title={description}
                             bottomDivider
-                            leftElement={<CheckBox style={{marginLeft: -15, marginRight: 10}} color="success" checked={true} />}
-                            rightElement={<Text>Yesterday</Text>}
+                            leftElement={<CheckBox disabled={loading} color="green" onPress={() => complete(index)} style={{marginLeft: -15, marginRight: 10}} 
+                                checked={completed} />}
+                            rightElement={<Text>{moment(dueDate.toDate()).format('D MM YYYY')}</Text>}
                         />
                         }}
                     />   
-
                     </View>
                 
                
