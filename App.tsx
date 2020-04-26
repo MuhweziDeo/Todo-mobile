@@ -13,9 +13,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {Asset} from "expo-asset";
 import {AppLoading} from "expo";
 import { Root } from "native-base";
+import { AppContex } from './src/context';
+import { User } from 'firebase';
 
 
 export const Stack = createStackNavigator();
+
+export const {Provider} = React.createContext<{user: User| null}>(AppContex);
 
 console.disableYellowBox = true;
 
@@ -51,24 +55,27 @@ export default function App() {
   }
   return (
     <>
+
+  <Provider  value={{...AppContex}}>
     <Root>
     <IconRegistry icons={EvaIconsPack}/>
     <ApplicationProvider {...eva} theme={eva.light}>
       <NavigationContainer ref={containerRef as any}>
         <StackNavigator/>
       </NavigationContainer>
+     
     </ApplicationProvider>
     </Root>
+    </Provider>
     </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    backgroundColor: '#fff',
+    flex: 1,
+    backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center',
-    
   },
 });
