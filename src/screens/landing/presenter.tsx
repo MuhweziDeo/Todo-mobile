@@ -4,13 +4,15 @@ import {View, StyleSheet, SafeAreaView, Text, ImageBackground, TouchableOpacity}
 import { Button } from '@ui-kitten/components';
 import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
 import { RouteParamList } from "../../navigation/bottom-tab-navigator";
+import { LoadingIndicator } from "../../components";
 
 
 export interface LandingProps {
     navigation: StackNavigationProp<RouteParamList, "start">
+    loading: boolean
 }
 
-export const LandingPresenter: React.FunctionComponent<LandingProps> = ({navigation}) => {
+export const LandingPresenter: React.FunctionComponent<LandingProps> = ({navigation, loading}) => {
 
     return (
         <View style={styles.container}>
@@ -23,7 +25,9 @@ export const LandingPresenter: React.FunctionComponent<LandingProps> = ({navigat
                     <Text style={{color: "white", fontWeight: "bold", fontSize: 30, padding: 40}}>Hello</Text>
                     <Text style={{color: "white", fontWeight: "bold", fontSize: 30, paddingLeft: 40}}>Welcome</Text>
                 </SafeAreaView>
+                
                 <View style={{flex:1, justifyContent: "flex-end", alignItems: "center", marginBottom: 100}}>
+                    {loading ? <LoadingIndicator size={"large"} spinner={{status: "control"}}/> : <>
                     <Button onPress={() => navigation.navigate("signup")} status="control" style={{...styles.marginBottom, ...styles.actionButtons}} 
                         appearance="outline">
                         Signup
@@ -39,6 +43,8 @@ export const LandingPresenter: React.FunctionComponent<LandingProps> = ({navigat
                     <Text style={styles.forgotPassword}>Forgot Password?</Text>
 
                     </TouchableOpacity>
+                    </>}
+                  
                 </View>
                 
             </ImageBackground>
