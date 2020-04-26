@@ -3,26 +3,16 @@ import {View, Text, SafeAreaView, StyleSheet, ScrollView} from "react-native";
 import {Ionicons,MaterialIcons} from "@expo/vector-icons";
 import {Card, Avatar} from "react-native-elements";
 import { defaultContext } from "../../context";
+import { Layout } from "../../components/layout";
 
 export const HomePresenter = (props: any) => {
     const context = React.useContext(defaultContext);
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.content}>
-
-            <View style={styles.header}>
-                <Avatar
-                    source={{uri: "https://i.pravatar.cc/300"}}
-                    size="large"
-                    containerStyle={{borderRadius: 20}}
-                    avatarStyle={{borderRadius:20}}
-                />
-                <View style={{alignContent: "center", alignSelf: "center"}}>
-                    <Text style={styles.email}>{context.user?.email}</Text>
-                    <Text style={{...styles.email, fontSize: 14, marginTop: 10, color: "#877fd1"}}>Creative Designer</Text>
-                </View>
-                
-            </View>
+        <Layout headerRight={<View style={{alignContent: "center", alignSelf: "center"}}>
+        <Text style={styles.email}>{context.user?.email}</Text>
+        <Text style={{...styles.email, fontSize: 14, marginTop: 10, color: "#877fd1"}}>Creative Designer</Text>
+        </View>}>
+           
 
             <View style={styles.recentProjects}>
                 <Text style={{...styles.recentTitle, color: "#716992"}}>Recent <Text style={styles.recentTitle}>Projects</Text></Text>
@@ -55,25 +45,25 @@ export const HomePresenter = (props: any) => {
             <View style={{...styles.recentProjects}}>
                 <Text style={{...styles.recentTitle, color: "#716992"}}>Recent <Text style={styles.recentTitle}>Projects</Text></Text>
                <ScrollView showsHorizontalScrollIndicator={false} style={{marginTop: 10}}>
-                   <View style={{flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap"}}>
-                    <View style={{marginBottom: 10, width: "50%"}}>
-                            <Ionicons style={{backgroundColor: "#fdc35d", width: "45%", padding:10}} color="white" name="ios-lock" size={35}/>
+                   <View style={{flexDirection: "row", justifyContent: "space-evenly", flexWrap: "wrap"}}>
+                    <View style={{marginBottom: 15, width: "50%"}}>
+                            <Ionicons style={{backgroundColor: "#fdc35d", width: "45%", padding:15}} color="white" name="ios-lock" size={35}/>
                             <Text style={styles.date}>15 March 2020</Text>
                             <Text style={styles.text}>Custom Prints</Text>
                     </View>
-                    <View style={{marginBottom: 10, width: "50%"}}>
-                            <Ionicons style={{backgroundColor: "#10C3BF", width: "45%", padding:10}} color="white" name="ios-lock" size={35}/>
+                    <View style={{marginBottom: 15, width: "50%"}}>
+                            <Ionicons style={{backgroundColor: "#10C3BF", width: "45%", padding:15}} color="white" name="ios-lock" size={35}/>
                             <Text style={styles.date}>15 March 2020</Text>
                             <Text style={styles.text}>Custom Prints</Text>
                     </View>
 
-                    <View style={{marginBottom: 10, width: "50%"}}>
-                        <Ionicons style={{backgroundColor: "#8C8FFF", width: "45%", padding:10}} color="white" name="ios-lock" size={35}/>
+                    <View style={{marginBottom: 15, width: "50%"}}>
+                        <Ionicons style={{backgroundColor: "#8C8FFF", width: "45%", padding:15}} color="white" name="ios-lock" size={35}/>
                         <Text style={styles.date}>15 March 2020</Text>
                         <Text style={styles.text}>Custom Prints</Text>
                    </View>
 
-                   <View style={{marginBottom: 10, width: "50%"}}>
+                   <View style={{marginBottom: 15, width: "50%"}}>
                         <Ionicons style={{backgroundColor: "#8C8FFF", width: "45%", padding:10}} color="white" name="ios-lock" size={35}/>
                         <Text style={styles.date}>15 March 2020</Text>
                         <Text style={styles.text}>Custom Prints</Text>
@@ -81,9 +71,7 @@ export const HomePresenter = (props: any) => {
                    </View>
                </ScrollView>
             </View>
-            {/*  */}
-            </View>
-        </SafeAreaView>
+        </Layout>
     )
 }
 
@@ -126,13 +114,13 @@ const styles = StyleSheet.create({
     },
     date: {
         color: "white",
-        marginTop: 5,
+        marginTop: 10,
         fontWeight: "300",
         fontSize: 15
     },
     text: {
         fontWeight: "bold",
-        marginTop:5,
+        marginTop:10,
         color: "white"
     }
 })

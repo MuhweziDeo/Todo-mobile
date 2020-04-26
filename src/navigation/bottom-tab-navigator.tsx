@@ -3,10 +3,11 @@ import { StyleSheet, View, Text } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RouteProp } from '@react-navigation/native';
 
-import {  HomeScreen } from "../screens";
+import {  HomeScreen, TasksScreen } from "../screens";
 import { StackNavigationProp } from "@react-navigation/stack/lib/typescript/src/types";
 import { FontAwesome, Entypo, AntDesign, MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { defaultColor } from "../constants";
+import { AppContex, defaultContext } from "../context";
 
 
 
@@ -31,29 +32,19 @@ export type SignUpNavigationProps = {
 
 const{Screen, Navigator} = createBottomTabNavigator<RouteParamList>();
 
-
-
 const BottomTabBar = ({ navigation, state }:any) => {
-  console.log(state.routeNames)
+    const context = React.useContext(defaultContext)
     return (
-      <View style={styles.tabContainer}>
+      <View style={{...styles.tabContainer, backgroundColor: 
+        state.index === 1 ? "white": context.tabContainerColor}}>
         <View style={styles.tabNav}>
           <FontAwesome name="home" onPress={() => navigation.navigate('home')} size={25} color="white"/>
-          <Entypo onPress={() => navigation.navigate('tasks')} name="mail" size={25} color="white"/>
+          <FontAwesome onPress={() => navigation.navigate('tasks')} name="tasks" size={25} color="white"/>
           <AntDesign name="contacts" size={25} color="white"/>
           <FontAwesome name="folder" size={25} color="white"/>
           <Ionicons name="md-add-circle" size={60} color={defaultColor}/>
           {/* <MaterialIcons name="add-circle" size={60} color={defaultColor}/> */}
         </View>
-      
-        {/* <BottomNavigation
-          selectedIndex={state.index}
-          style={{backgroundColor: "#49406F"}}
-          onSelect={index => navigation.navigate(state.routeNames[index])}>
-          <BottomNavigationTab title='home'/>
-          <BottomNavigationTab title='home'/>
-          <BottomNavigationTab title='home'/>
-        </BottomNavigation> */}
       </View>
         
     )
@@ -68,6 +59,11 @@ export const BottomTabNavigator = (props: any) => {
           <Screen
             name="home"
             component={HomeScreen}
+          />
+
+            <Screen
+            name="tasks"
+            component={TasksScreen}
           />
         </Navigator>
     )
