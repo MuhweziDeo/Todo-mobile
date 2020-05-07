@@ -35,7 +35,7 @@ export const TasksPresenter: React.FunctionComponent<Props> = ({todos, complete,
         const completed = todos.filter((todo) => todo.completed);
         const count = completed.reduce((x, y) => x+1,0);
         const percentage = (count/todos.length) * 100;
-        return Math.round(percentage);
+        return Math.round(percentage) || 0;
 
     }
     return (
